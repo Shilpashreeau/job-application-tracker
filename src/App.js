@@ -17,18 +17,16 @@ function App() {
 
   return (
     <main className="App">
-      {/* <AboutPage/> */}
-      {/* <Link to="/">
-        <div>About</div>
-      </Link> */}
+    
      { user ? 
       <>
       <NavBar user={user} setUser={setUser}/>
       <Routes>
      x
-        <Route path='/orders/new' element={ <NewJobPage /> }/>
-        <Route path='/orders' element={ <AllJobsPage /> }/>
-        {/* <Route path='/' element={ <AboutPage/>}/> */}
+        <Route path='/orders/new' element={ <NewJobPage user={user} setUser={setUser}/> }/>
+        <Route path='/orders' element={ <AllJobsPage user={user} setUser={setUser}/> }/>
+        
+        
       </Routes>
       </>
      :

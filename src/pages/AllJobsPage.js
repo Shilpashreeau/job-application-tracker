@@ -1,20 +1,25 @@
-import { checkToken } from "../utilities/users-service";
 
+import React, { useState } from "react";
+import NewJob from "./NewJob";
+function AllJobsPage({ user, setUser }) {
 
-function AllJobsPage() {
+    const [todos, setTodos] = useState([]);
 
-  /*const handleCheckToken = async () => {
-    const expDate = await checkToken();
-    console.log(expDate);
-  };*/
+  const addTodo = (newTodo) => {
+   setTodos([...todos, newTodo]);
+  };
 
   return (
-    /*<div>
-      <h1>All jobs</h1>
-      <button onClick={handleCheckToken}>
-        Check When My Login Token Expires
-      </button>
-    </div>*/
+    <>
+    <div>
+      <NewJob onSub={addTodo} user={user} setUser={setUser} />
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}>{todo}</li>
+        ))}
+      </ul>
+    </div>
+  
     <table class="table">
                         <thead>
                             <tr className="table-dark">
@@ -53,7 +58,7 @@ function AllJobsPage() {
                         </tbody> */}
                     </table>
 
-
+                    </>
   );
 }
 
