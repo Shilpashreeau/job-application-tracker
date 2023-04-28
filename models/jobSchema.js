@@ -13,12 +13,14 @@ const jobSchema = new Schema(
     appliedOn: {
       type: Date,
       required: true,
+      default: Date.now
     },
 
     jobStatus: {
       type: String,
       required: true,
     },
+   
   },
 
   {

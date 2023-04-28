@@ -4,4 +4,4 @@ const mongoose = require('mongoose');
 
 const jobSchema = require('./jobSchema');
 
-module.exports = mongoose.model('Item', jobSchema);
+module.exports = mongoose.model('Job', jobSchema);
