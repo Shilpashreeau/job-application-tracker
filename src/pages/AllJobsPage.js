@@ -1,7 +1,7 @@
 import { checkToken } from "../utilities/users-service";
 
 
-function OrderHistoryPage() {
+function AllJobsPage() {
 
   /*const handleCheckToken = async () => {
     const expDate = await checkToken();
@@ -57,4 +57,4 @@ function OrderHistoryPage() {
   );
 }
 
-export default OrderHistoryPage;
+export default AllJobsPage;
