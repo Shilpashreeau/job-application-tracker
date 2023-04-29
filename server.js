@@ -26,9 +26,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(require('./config/checkToken'));
 
 // * All other routes
-// app.get("/", (req, res) => {
-//     res.send("<h1>Hello</h1>");
-//   });
+
 app.use('/api/users', require('./routes/api/users'));
 app.use(router);
 
