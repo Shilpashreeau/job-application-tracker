@@ -3,19 +3,19 @@ import React, { useState } from "react";
 import NewJob from "./NewJob";
 function AllJobsPage({ user, setUser }) {
 
-    const [todos, setTodos] = useState([]);
+    const [jobs, setJobs] = useState([]);
 
-  const addTodo = (newTodo) => {
-   setTodos([...todos, newTodo]);
-  };
+//   const addTodo = (newJob) => {
+//     setJobs([...jobs, newJob]);
+//   };
 
   return (
     <>
     <div>
-      <NewJob onSub={addTodo} user={user} setUser={setUser} />
+      <NewJob  user={user} setUser={setUser} />
       <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>{todo}</li>
+        {jobs.map((job, index) => (
+          <li key={index}>{job}</li>
         ))}
       </ul>
     </div>

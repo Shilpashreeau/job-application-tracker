@@ -23,8 +23,8 @@ function App() {
       <NavBar user={user} setUser={setUser}/>
       <Routes>
      x
-        <Route path='/orders/new' element={ <NewJobPage user={user} setUser={setUser}/> }/>
-        <Route path='/orders' element={ <AllJobsPage user={user} setUser={setUser}/> }/>
+        <Route path='/jobs/new' element={ <NewJobPage user={user} setUser={setUser}/> }/>
+        <Route path='/jobs' element={ <AllJobsPage user={user} setUser={setUser}/> }/>
         
         
       </Routes>

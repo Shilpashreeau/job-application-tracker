@@ -2,6 +2,7 @@ require('dotenv').config();
 require('./config/database'); // connects to db
 const express = require('express');
 const path = require('path'); // node module
+const router = require("./routes/api/router");
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 
@@ -29,7 +30,7 @@ app.use(require('./config/checkToken'));
 //     res.send("<h1>Hello</h1>");
 //   });
 app.use('/api/users', require('./routes/api/users'));
-
+app.use(router);
 
 
 // Put API routes here, before the "catch all" route

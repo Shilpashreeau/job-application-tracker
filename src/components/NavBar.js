@@ -9,9 +9,9 @@ function NavBar({ user, setUser }) {
   return (
     <nav>
      
-      <Link to="/orders">List of jobs Applied</Link>
+      <Link to="/jobs">List of jobs Applied</Link>
       &nbsp; | &nbsp;
-      <Link to="/orders/new">New Job</Link> <span>Welcome, {user.name}</span>{" "}
+      <Link to="/jobs/new">New Job</Link> <span>Welcome, {user.name}</span>{" "}
       <Link to="" onClick={handleLogOut}>
         Logout
       </Link>

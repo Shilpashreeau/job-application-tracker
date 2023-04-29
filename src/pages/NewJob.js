@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import * as newjobapi from '../utilities/new-job-api';
 
-function NewJob({onSub, user, setUser }) {
+function NewJob({user, setUser }) {
    
-  const [todo, setTodo] = useState("");
+  const [job, setJob] = useState("");
   
 
 //   const handleSubmit = (event) => {
