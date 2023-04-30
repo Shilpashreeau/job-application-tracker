@@ -4,11 +4,14 @@ import React, { useState,useEffect  } from "react";
 import toast from "react-hot-toast";
 import { Link } from 'react-router-dom';
 import axios from "axios";
-import * as ordersAPI from '../../utilities/orders-api';
+// import * as ordersAPI from '../../utilities/orders-api';
 import NewJob from "./NewJob";
 const AllJobsPage=({ user, setUser })=> {
 
     const [jobs, setJobs] = useState([]);
+    const [source,setSource]=useState([]);
+    const [date,setDate]=useState([]);
+    const [position,setPosition]=useState([]);
     const [isAddingNew, setisAddingNew] = useState(false);
 
 //   const addTodo = (newJob) => {
@@ -99,12 +102,16 @@ const getJobs = async () => {
   const addNewJob = async (e) => {
     e.preventDefault();
     if(newJob.length <= 0){
-      toast.error("Task is empty");
+      toast.error("Job is empty");
       return;
     }
     try {
     const { job } = await axios.post("/api/job", {
-      title: newJob,
+      companyName: newJob,
+      source:source,
+      appliedOn:date,
+      position:position,
+
     })
     toast.success("New job Created")
     setisAddingNew(false) //which 'll habitually close this form
@@ -146,7 +153,16 @@ const getJobs = async () => {
           <input type='text'
            value={newJob}
            onChange={(e)=> setNewJob(e.target.value)}
-           placeholder= "Task Required" />
+           placeholder= "Company name Required" />
+           <input type='text'
+           value={position}
+           onChange={(e)=> setPosition(e.target.value)}
+           placeholder= "Position applied for" />
+           <input type='text'
+           value={source}
+           onChange={(e)=> setSource(e.target.value)}
+           placeholder= "Source where job is applied" />
+           <input type="datetime-local" onChange={(e)=> setDate(e.target.value)} name="Applied on"/>
            <button type="submit">Add</button>
         </form>
       )}

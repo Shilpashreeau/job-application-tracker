@@ -67,10 +67,13 @@
   
 //   }
 
-import Job from "../../models/jobSchema";
-import createError from "../../utils/createError";
+// import Job from "../../models/jobSchema";
+const Job = require('../../models/jobSchema');
+// import createError from "../../utils/createError";
+const createError=require('../../utils/createError');
 
-export const createJob = async(req,res,next)=>{
+  
+ const createJob = async(req,res,next)=>{
 const newJob= new Job({
 companyName: req.body.companyName,
 position: req.body.position,
@@ -86,7 +89,7 @@ return res.status(201).json(createdNewJob);
 }
 }
 
-export const getAllJobsUCreated = async(req,res,next)=>{
+const getAllJobsUCreated = async(req,res,next)=>{
     try {
      const allJobs = await Job.find({});
      return res.status(200).json(allJobs)   
@@ -97,7 +100,7 @@ export const getAllJobsUCreated = async(req,res,next)=>{
 }
 
 /* what is moto of this class getCurrentUserTask is just to show you created or not task or show some [] when show this when you not created anytask */
-export const getCurrentJob = async(req,res,next)=>{
+const getCurrentJob = async(req,res,next)=>{
   try {
   const currentJob = await Job.find({user: req.user.id})
   return res.status(201).json(currentJob)  
@@ -107,7 +110,7 @@ export const getCurrentJob = async(req,res,next)=>{
 }
 
 /* @startegies */
-export const updateJob = async(req,res,next)=>{
+const updateJob = async(req,res,next)=>{
 try {
 const job = await Job.findById(req.params.jobId).exec();
 console.log(job)
@@ -124,7 +127,7 @@ return res.status(200).json(updateIt)
 }
 }
 
-export const deleteJob = async(req,res,next)=>{
+const deleteJob = async(req,res,next)=>{
   try {
     const job = await Job.findById(req.params.jobId).exec();
     if(!job) return next(createError({status:404, message:"user not found"}));
@@ -139,4 +142,11 @@ export const deleteJob = async(req,res,next)=>{
 
 }
 
+module.exports = {
+  createJob,
+  getAllJobsUCreated,
+  getCurrentJob,
+  updateJob,
+  deleteJob,
+  };
 

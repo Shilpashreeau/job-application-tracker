@@ -17,8 +17,9 @@ const jobSchema = new mongoose.Schema(
     },
 
     jobStatus: {
-      type: String,
+      type: Boolean,
       required: true,
+      default: false,
     },
    
   },

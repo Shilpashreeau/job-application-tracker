@@ -2,21 +2,21 @@ import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 
-import moment from 'moment';
+// import moment from 'moment';
 import { Link } from "react-router-dom";
 
-const TaskItem = ({ task, deleteTask }) => {
-  const [iscompleted, setIsCompleted] = useState(task.completed);
+const NewJob = ({ job, deleteJob }) => {
+  const [isRejected, setIsRejected] = useState(job.status);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCheckboxClick = async() => {
   try {
   setIsLoading(true);
-  await axios.put(`/api/task/${task._id}`,{
-    completed: !iscompleted,
+  await axios.put(`/api/job/${job._id}`,{
+    status: !isRejected,
   })
-  setIsCompleted(!iscompleted);
-  toast.success("Task Upadated Successfully");  
+  setIsRejected(!isRejected);
+  toast.success("Job Updated Successfully");  
   } catch (error) {
     console.log(error)
   }
@@ -26,10 +26,10 @@ const TaskItem = ({ task, deleteTask }) => {
   };
 
   return (
-    <tr className={classes.task_item}>
-      <td className={classes.task_name}>
+    <tr>
+      <td >
         <div
-          className={classes.checkbox}
+          
           role='checkbox'
           aria-checked
           onChange={handleCheckboxClick}
@@ -37,22 +37,22 @@ const TaskItem = ({ task, deleteTask }) => {
           >
           <input
             type='checkbox'
-            checked={iscompleted}
+            checked={isRejected}
             readOnly
             tabIndex={-1}
             disabled={isLoading}
           />
         </div>
-        <p>{task.title}</p>
-        <Link to="/edittask">Edit</Link>
+        <p>{job.companyName}</p>
+        <Link to="/editJob">Edit</Link>
       </td>
-      <td>{iscompleted ? "complete" : "Incompleted"}</td>
-      <td>{moment(task.createdAt).format('MMM Do YY')}</td>
+      <td>{isRejected ? "rejected" : "Accepted for next step"}</td>
+      <td>{job.appliedOn}</td>
       <td>
         <button
           type='button'
-          className={classes.deleteBtn}
-          onClick={() => deleteTask(task._id)}
+          
+          onClick={() => deleteJob(job._id)}
           /*We've to call this delete function in Tasklist because we want to updated state also while deleting */
         >
           Delete
@@ -62,4 +62,4 @@ const TaskItem = ({ task, deleteTask }) => {
   );
 };
 
-export default TaskItem;
+export default NewJob;

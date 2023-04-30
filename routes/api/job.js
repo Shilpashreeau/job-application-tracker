@@ -12,22 +12,22 @@
 
 
 // module.exports = router;
-import express from "express";
+const express = require('express');
 const router = express.Router();
-import { createJob, deleteJob, getCurrentJob,updateJob,getAllJobsUCreated } from "../../controllers/api/job";
+// import { createJob, deleteJob, getCurrentJob,updateJob,getAllJobsUCreated } from "../../controllers/api/job";
+const usersCtrl = require('../../controllers/api/job');
+router.post("/",usersCtrl.createJob); //without createJob getCurrentUserJobShow []
+router.get("/all", usersCtrl.getAllJobsUCreated)
 
-router.post("/", createJob); //without createJob getCurrentUserJobShow []
-router.get("/all", getAllJobsUCreated)
-
-router.get("/myjob", getCurrentJob);
+router.get("/myjob",usersCtrl.getCurrentJob);
 
 // This one for upadating job
-router.put("/:jobId", updateJob);
+router.put("/:jobId", usersCtrl.updateJob);
 
-router.delete("/:jobId", deleteJob);
-
-
+router.delete("/:jobId",usersCtrl.deleteJob);
 
 
 
-export default router;
+
+
+module.exports= router;
