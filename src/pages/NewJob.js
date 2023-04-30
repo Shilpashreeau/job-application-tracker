@@ -1,57 +1,65 @@
+import axios from "axios";
 import React, { useState } from "react";
-import * as newjobapi from '../utilities/new-job-api';
+import { toast } from "react-hot-toast";
 
-function NewJob({user, setUser }) {
-   
-  const [job, setJob] = useState("");
-  
+import moment from 'moment';
+import { Link } from "react-router-dom";
 
-//   const handleSubmit = (event) => {
-//     event.preventDefault();
-//     props.onSub(todo);
-//     setTodo("");
-//   };
+const TaskItem = ({ task, deleteTask }) => {
+  const [iscompleted, setIsCompleted] = useState(task.completed);
+  const [isLoading, setIsLoading] = useState(false);
 
-//   const handleInputChange = (event) => {
-//     setTodo(event.target.value);
-//   };
+  const handleCheckboxClick = async() => {
+  try {
+  setIsLoading(true);
+  await axios.put(`/api/task/${task._id}`,{
+    completed: !iscompleted,
+  })
+  setIsCompleted(!iscompleted);
+  toast.success("Task Upadated Successfully");  
+  } catch (error) {
+    console.log(error)
+  }
+  finally{
+    setIsLoading(false)
+  }
+  };
 
- 
   return (
-    <>
-    
-     <h1>New Job Page</h1>;
-    {/* <form onSubmit={handleSubmit}>
-      <label>
-        Add a new todo:
-        {/* <input type="text" value={todo} onChange={handleInputChange} /> 
-      </label>
-      <button type="submit">Add</button>
-    </form> */}
-    </>
+    <tr className={classes.task_item}>
+      <td className={classes.task_name}>
+        <div
+          className={classes.checkbox}
+          role='checkbox'
+          aria-checked
+          onChange={handleCheckboxClick}
+          disabled = {isLoading}
+          >
+          <input
+            type='checkbox'
+            checked={iscompleted}
+            readOnly
+            tabIndex={-1}
+            disabled={isLoading}
+          />
+        </div>
+        <p>{task.title}</p>
+        <Link to="/edittask">Edit</Link>
+      </td>
+      <td>{iscompleted ? "complete" : "Incompleted"}</td>
+      <td>{moment(task.createdAt).format('MMM Do YY')}</td>
+      <td>
+        <button
+          type='button'
+          className={classes.deleteBtn}
+          onClick={() => deleteTask(task._id)}
+          /*We've to call this delete function in Tasklist because we want to updated state also while deleting */
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
   );
-}
+};
 
-export default NewJob;
-
-
-  
-
-  
-
- 
-
-  // Update the item's qty in the cart
-  // Will add the item to the order if not currently in the cart
-  // Sending info via the data payload instead of a long URL
-//   export function setItemQtyInCart(itemId, newQty) {
-//     return sendRequest(`${BASE_URL}/cart/qty`, 'PUT', { itemId, newQty });
-//   }
-
-  // Updates the order's (cart's) isPaid property to true
-//   export function checkout() {
-//     // Changing data on the server, so make it a POST request
-//     return sendRequest(`${BASE_URL}/cart/checkout`, 'POST');
-//   }
-
- 
+export default TaskItem;
