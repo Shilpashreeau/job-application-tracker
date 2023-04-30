@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
 import { Routes, Route } from 'react-router-dom';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 import NewJobPage from './pages/NewJob';
 import AuthPage from './pages/AuthPage';
@@ -25,7 +25,7 @@ function App() {
      x
         <Route path='/jobs/new' element={ <NewJobPage user={user} setUser={setUser}/> }/>
         <Route path='/jobs' element={ <AllJobsPage user={user} setUser={setUser}/> }/>
-        
+        <Route path="/*" element={<Navigate to="/orders/new" />} />
         
       </Routes>
       </>

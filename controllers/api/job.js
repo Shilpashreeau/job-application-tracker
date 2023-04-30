@@ -68,7 +68,7 @@
 //   }
 
 import Job from "../../models/jobSchema";
-import createError from "../";
+import createError from "../../utils/createError";
 
 export const createJob = async(req,res,next)=>{
 const newJob= new Job({

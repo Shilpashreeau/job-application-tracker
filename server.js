@@ -2,7 +2,8 @@ require('dotenv').config();
 require('./config/database'); // connects to db
 const express = require('express');
 const path = require('path'); // node module
-const router = require("./routes/api/router");
+const jobrouter = require("./routes/api/job");
+const ensureLoggedIn=require('./config/ensureLoggedIn');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 
@@ -28,8 +29,9 @@ app.use(require('./config/checkToken'));
 // * All other routes
 
 app.use('/api/users', require('./routes/api/users'));
-app.use(router);
+// app.use("/api", jobrouter);
 
+app.use('/api/job', ensureLoggedIn, require('./routes/api/job'));
 
 // Put API routes here, before the "catch all" route
 // The following "catch all" route (note the *) is necessary
