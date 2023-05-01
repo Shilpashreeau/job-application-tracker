@@ -1,4 +1,4 @@
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
 
 const jobSchema = new mongoose.Schema(
   {
@@ -13,7 +13,7 @@ const jobSchema = new mongoose.Schema(
     appliedOn: {
       type: Date,
       required: true,
-      default: Date.now
+      default: Date.now,
     },
 
     jobStatus: {
@@ -21,13 +21,12 @@ const jobSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
-   
   },
 
   {
     timestamps: true,
   }
 );
-const Job = mongoose.model('Job', jobSchema);
+const Job = mongoose.model("Job", jobSchema);
 
- module.exports = Job;
+module.exports = Job;

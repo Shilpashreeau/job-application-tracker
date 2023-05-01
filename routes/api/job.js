@@ -1,33 +1,17 @@
-// const express = require('express');
-// const router = express.Router();
-// const ordersCtrl = require('../../controllers/api/addJobs');
-
-// // GET /api/orders/cart
-// router.get('/cart', ordersCtrl.cart);
-// // GET /api/orders/history
-// router.get('/alljobs', ordersCtrl.history);
-// //*???????????????????????????????????????????/
-// // POST /api/orders/cart/checkout
-// router.post('/cart/checkout', ordersCtrl.checkout);
-
-
-// module.exports = router;
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-// import { createJob, deleteJob, getCurrentJob,updateJob,getAllJobsUCreated } from "../../controllers/api/job";
-const usersCtrl = require('../../controllers/api/job');
-router.post("/",usersCtrl.createJob); //without createJob getCurrentUserJobShow []
-router.get("/all", usersCtrl.getAllJobsUCreated)
 
-router.get("/myjob",usersCtrl.getCurrentJob);
+const jobsCtrl = require("../../controllers/api/job");
+const ensureLoggedIn = require("../../config/ensureLoggedIn");
+
+router.post("/", jobsCtrl.createJob);
+router.get("/all", jobsCtrl.getAllJobsUCreated);
+
+router.get("/myjob", jobsCtrl.getCurrentJob);
 
 // This one for upadating job
-router.put("/:jobId", usersCtrl.updateJob);
+router.put("/:jobId", jobsCtrl.updateJob);
 
-router.delete("/:jobId",usersCtrl.deleteJob);
+router.delete("/:jobId", jobsCtrl.deleteJob);
 
-
-
-
-
-module.exports= router;
+module.exports = router;

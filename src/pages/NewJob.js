@@ -9,34 +9,32 @@ const NewJob = ({ job, deleteJob }) => {
   const [isRejected, setIsRejected] = useState(job.status);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleCheckboxClick = async() => {
-  try {
-  setIsLoading(true);
-  await axios.put(`/api/job/${job._id}`,{
-    status: !isRejected,
-  })
-  setIsRejected(!isRejected);
-  toast.success("Job Updated Successfully");  
-  } catch (error) {
-    console.log(error)
-  }
-  finally{
-    setIsLoading(false)
-  }
+  const handleCheckboxClick = async () => {
+    try {
+      setIsLoading(true);
+      await axios.put(`/api/job/${job._id}`, {
+        status: !isRejected,
+      });
+      setIsRejected(!isRejected);
+      toast.success("Job Updated Successfully");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <tr>
-      <td >
+      <td>
         <div
-          
-          role='checkbox'
+          role="checkbox"
           aria-checked
           onChange={handleCheckboxClick}
-          disabled = {isLoading}
-          >
+          disabled={isLoading}
+        >
           <input
-            type='checkbox'
+            type="checkbox"
             checked={isRejected}
             readOnly
             tabIndex={-1}
@@ -50,10 +48,9 @@ const NewJob = ({ job, deleteJob }) => {
       <td>{job.appliedOn}</td>
       <td>
         <button
-          type='button'
-          
+          type="button"
           onClick={() => deleteJob(job._id)}
-          /*We've to call this delete function in Tasklist because we want to updated state also while deleting */
+          /*We've to call this delete function in jobs because we want to updated state also while deleting */
         >
           Delete
         </button>
