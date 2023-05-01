@@ -7,9 +7,9 @@ module.exports = {
 
 async function index(req, res) {
   try {
-    const jobs = await Job.find({}).sort("companyName").exec();
+    const job = await Job.find({}).sort("companyName").exec();
 
-    res.status(200).json(jobs);
+    res.status(200).json(job);
   } catch (e) {
     res.status(400).json({ msg: e.message });
   }
