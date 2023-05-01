@@ -6,9 +6,9 @@ import axios from "axios";
 import NewJob from "./NewJob";
 const AllJobsPage = ({ user, setUser }) => {
   const [jobs, setJobs] = useState([]);
-  const [source, setSource] = useState([]);
-  const [date, setDate] = useState([]);
-  const [position, setPosition] = useState([]);
+  const [source, setSource] = useState("");
+  const [date, setDate] = useState("");
+  const [position, setPosition] = useState("");
   const [isAddingNew, setisAddingNew] = useState(false);
 
   /*Whenever we are adding new data we'll make a true,when we'll close the data we'll make false above one e.g */
@@ -68,9 +68,10 @@ const AllJobsPage = ({ user, setUser }) => {
   // }
   const getJobs = async () => {
     try {
-      const { job } = await axios.get("/api/job/myjob");
+      const jobs = await axios.get("/api/jobs");
+      console.log(jobs.data);
       setJobs(
-        job.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        jobs.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
       );
     } catch (error) {
       console.log(error);
@@ -97,18 +98,20 @@ const AllJobsPage = ({ user, setUser }) => {
       return;
     }
     try {
-      const { job } = await axios.post("/api/job", {
+      const  job  = await axios.post("/api/jobs", {
         companyName: newJob,
         source: source,
         appliedOn: date,
         position: position,
       });
+      console.log(job.data);
       toast.success("New job Created");
       setisAddingNew(false); //which 'll habitually close this form
       setNewJob(""); //setNewJob will be empty which is initially value;
 
       // after successfully created job i will add this into setNewJob for updating ...jobs(it spread all the jobs which is already there) befoure this I should add my newJob list in form of obje {...data}
-      setJobs([{ ...job }, ...jobs]);
+      setJobs([{ ...job.data}, ...jobs]);
+      console.log(jobs);
     } catch (error) {
       console.log(error);
     }
@@ -116,7 +119,7 @@ const AllJobsPage = ({ user, setUser }) => {
 
   const deleteJob = async (id) => {
     try {
-      await axios.delete(`/api/job/${id}`);
+      await axios.delete(`/api/jobs/${id}`);
       toast.success("Job successfully deleted");
       /*after successfully deleted job we need remove from our jobs into our states so for that we need filter which says accept delete all thing properly run go @w3school and explore filter */
       setJobs(jobs.filter((job) => job._id !== id));
@@ -164,10 +167,10 @@ const AllJobsPage = ({ user, setUser }) => {
         </form>
       )}
 
-      {jobs.length > 0 ? (
+      {jobs?.length > 0 ? (
         <table>
           <tbody>
-            {jobs.map((job) => (
+            {jobs?.map((job) => (
               <NewJob key={job._id} job={job} deleteJob={deleteJob} />
             ))}
           </tbody>

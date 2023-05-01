@@ -2,7 +2,7 @@ import { useState } from "react";
  import { Link } from "react-router-dom";
 import SignUpForm from "../components/SignUpForm";
 import LoginForm from "../components/login/LogInForm";
-import AboutPage from "./AboutPage";
+import AboutPage from "./about/AboutPage";
 
 function AuthPage({ setUser }) {
   const [showLogin, setShowLogin] = useState(true);

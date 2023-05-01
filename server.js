@@ -30,7 +30,7 @@ app.use("/api/users", require("./routes/api/users"));
 // app.use("/api", jobrouter);
 
 // app.use('/api/job',ensureLoggedIn,require('./routes/api/job'));
-app.use("/api/job", require("./routes/api/job"));
+app.use("/api/jobs", require("./routes/api/job"));
 
 // Put API routes here, before the "catch all" route
 // The following "catch all" route (note the *) is necessary

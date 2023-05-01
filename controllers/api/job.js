@@ -12,6 +12,7 @@ const createJob = async (req, res, next) => {
   });
   try {
     const createdNewJob = await newJob.save();
+    console.log(createdNewJob);
     return res.status(201).json(createdNewJob);
   } catch (error) {
     return next(error);
@@ -29,7 +30,7 @@ const getAllJobsUCreated = async (req, res, next) => {
 
 const getCurrentJob = async (req, res, next) => {
   try {
-    const currentJob = await Job.find({ user: req.user.id });
+    const currentJob = await Job.findById(req.params.id);
     return res.status(201).json(currentJob);
   } catch (error) {
     return next(error);
@@ -41,9 +42,9 @@ const updateJob = async (req, res, next) => {
     const job = await Job.findById(req.params.jobId).exec();
     console.log(job);
     if (!job)
-      return next(createError({ status: 404, message: "user Not found" }));
+      return next(createError({ status: 404, message: "job Not found" }));
     if (job._id.toString() !== req.job.id)
-      return next(createError({ status: 401, message: "It's not your user" }));
+      return next(createError({ status: 401, message: "It's not your job" }));
     /* task.user.toString() is coming from job which is already in string formate i.e toString() user & req.user.id is come from payload */
     const updateIt = await Job.findByIdAndUpdate(
       req.params.jobId,
@@ -62,16 +63,16 @@ const deleteJob = async (req, res, next) => {
   try {
     const job = await Job.findById(req.params.jobId).exec();
     if (!job)
-      return next(createError({ status: 404, message: "user not found" }));
+      return next(createError({ status: 404, message: "job not found" }));
     if (job.companyName.toString() !== req.companyName.id)
       return next(
         createError({
           status: 401,
-          message: "It's not your task",
+          message: "It's not your job",
         })
       );
     await Job.findByIdAndDelete(req.params.jobId);
-    return res.status(200).json("Task deleted successfully");
+    return res.status(200).json("Job deleted successfully");
   } catch (error) {
     return next(error);
   }

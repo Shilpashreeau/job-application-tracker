@@ -8,11 +8,11 @@ import { Link } from "react-router-dom";
 const NewJob = ({ job, deleteJob }) => {
   const [isRejected, setIsRejected] = useState(job.status);
   const [isLoading, setIsLoading] = useState(false);
-
+console.log(job);
   const handleCheckboxClick = async () => {
     try {
       setIsLoading(true);
-      await axios.put(`/api/job/${job._id}`, {
+      await axios.put(`/api/jobs/${job._id}`, {
         status: !isRejected,
       });
       setIsRejected(!isRejected);

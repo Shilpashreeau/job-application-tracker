@@ -5,10 +5,10 @@ const jobsCtrl = require("../../controllers/api/job");
 const ensureLoggedIn = require("../../config/ensureLoggedIn");
 
 router.post("/", jobsCtrl.createJob);
-router.get("/all", jobsCtrl.getAllJobsUCreated);
+router.get("/", jobsCtrl.getAllJobsUCreated);
 
-router.get("/myjob", jobsCtrl.getCurrentJob);
-
+router.get("/:jobId", jobsCtrl.getCurrentJob);
+//req.params.id
 // This one for upadating job
 router.put("/:jobId", jobsCtrl.updateJob);
 
