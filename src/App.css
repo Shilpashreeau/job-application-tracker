@@ -1,5 +1,10 @@
+body{
+
+  background:linear-gradient(rgb(116, 116, 214),rgb(94, 159, 94));
+}
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
@@ -35,4 +40,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+#main-bg{
+
+  background:linear-gradient(rgb(116, 116, 214),rgb(94, 159, 94));
 }
