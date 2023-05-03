@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
-import NewJobPage from "./pages/NewJob";
+// import NewJobPage from "./pages/NewJob";
 import AuthPage from "./pages/AuthPage";
 import AllJobsPage from "./pages/AllJobsPage";
 import NavBar from "./components/navbar/NavBar";
@@ -11,7 +11,7 @@ import AboutPage from "./pages/about/AboutPage";
 import { getUser } from "./utilities/users-service";
 
 import "./App.css";
-import TableHeader from "./components/TableHeader";
+
 
 
 function App() {

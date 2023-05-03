@@ -1,19 +1,19 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
-import { deleteJob } from "./AllJobsPage";
-import TableHeader from "../components/TableHeader";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+
+
+// import { useParams } from "react-router-dom";
+
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+
+
 
 // const NewJob = ({ job, deleteJob }) => {
   const NewJob = ({ job}) => {
   const [isRejected, setIsRejected] = useState(job.status);
   const [isLoading, setIsLoading] = useState(false);
-  const { id } = useParams();
+  // const { id } = useParams();
 
   console.log(job);
 

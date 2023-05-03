@@ -2,7 +2,7 @@
 
 .App {
   text-align: center;
-  background-image: url(resume.jpg);
+  /* background-image: url(resume.jpg); */
   background-size:cover;
   background-position:center;
   background-repeat: no-repeat;
@@ -42,9 +42,9 @@
     transform: rotate(360deg);
   }
 }
-.newjob{
+/* .newjob{
   background:linear-gradient(rgb(116, 116, 214),rgb(94, 159, 94));
-}
+} */
 /* .table{
 
   border-collapse: collapse; /* merge the borders of the cells 
