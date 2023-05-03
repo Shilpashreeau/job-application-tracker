@@ -41,6 +41,7 @@ const NewJob = ({ job, deleteFunc, updateFunc }) => {
                 disabled={isLoading}
               >
                 <input
+                onClick={()=>updateFunc(job._id)}
                   type="checkbox"
                   checked={isRejected}
                   readOnly
