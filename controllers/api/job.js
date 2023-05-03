@@ -65,14 +65,18 @@ const updateJob = async (req, res, next) => {
 //* to delete job
  const deleteJob = async(req,res,next)=>{
   try {
-    const job = await Job.findById(req.params.id).exec();
-    if(!job) return next(createError({status:404, message:"user not foun"}));
-    if(job.companyName.toString() !== req.user.id) return next(createError({
-      status:401, message: "It's not your job"
-    }));
-    await Job.findByIdAndDelete(req.params.id);
+    // const job = await Job.findById(req.params.id).exec();
+    // console.log(job);
+    // console.log(req.params.id);
+    // if(!job) return next(createError({status:404, message:"user not found"}));
+    // if(job.companyName.toString() !== req.user.id) return next(createError({
+    //   status:401, message: "It's not your job"
+    // }));
+    console.log(req.params.jobId);
+    await Job.findByIdAndDelete(req.params.jobId);
     return res.status(200).json("Job deleted successfully") 
   }catch (error) {
+    console.log(error)
    return  next(error)
   }
 

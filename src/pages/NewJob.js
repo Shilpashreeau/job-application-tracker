@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
-
+import { deleteJob} from "../utilities/all-jobs-api";
 // import { useParams } from "react-router-dom";
 
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+// import { deleteJob } from "../../controllers/api/job";
 
 // const NewJob = ({ job, deleteJob }) => {
 const NewJob = ({ job }) => {
@@ -38,17 +39,23 @@ const NewJob = ({ job }) => {
   //     console.log("error calling api", error);
   //   }
   // };
-  const deleteJob = async (id) => {
-    try {
-      await axios.delete(`/api/jobs/${id}`);
-      toast.success("Job successfully deleted");
-      /*after successfully delted task we need remove from our taskList into our states so for that we need filter which says accept delete all thing properly run go @w3school and explore filter */
-      // setTaskList(taskList.filter((task) => task._id !== id));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+  // const deleteJob = async (id) => {
+  //   console.log(id);
+  //   try {
+  //     await axios.delete(`/api/jobs/${id}`);
+  //     toast.success("Job successfully deleted");
+  //     /*after successfully delted task we need remove from our taskList into our states so for that we need filter which says accept delete all thing properly run go @w3school and explore filter */
+  //     // setTaskList(taskList.filter((task) => task._id !== id));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  async function deleteFunc(id){
+    const response = await deleteJob(id)
+    console.log(response);
+    // window.location.reload();
+  }
+  
   // const handleDelete = async (id) => {
   //   await deleteJob(id);
   // };
@@ -97,13 +104,14 @@ const NewJob = ({ job }) => {
               {isRejected ? "rejected" : "Accepted for next step"}
             </th>{" "}
             <th>
-              <button
+              {/* <button
                 className="btn btn-danger"
                 type="button"
                 onClick={() => deleteJob(job._id)}
-              >
-                <DeleteOutlineIcon />
-              </button>
+              > */}
+                <button onClick={() => {deleteFunc(job._id)}}> <DeleteOutlineIcon /></button>
+               
+              {/* </button> */}
             </th>
           </tr>
         </thead>
