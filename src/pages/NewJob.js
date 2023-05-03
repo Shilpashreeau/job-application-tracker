@@ -60,7 +60,7 @@ import CardContent from '@mui/material/CardContent';
 
   return (
     <div className="newjob">
-      <div className="container mt-3">
+      
       {/* <table class="table">
       <thead>
         <tr className="table-dark">
@@ -74,17 +74,16 @@ import CardContent from '@mui/material/CardContent';
       </thead> */}
      
       {/* <TableHeader /> */}
-      <Card sx={{ maxWidth: 600 }}></Card>
-      {/* <table class="table"> */}
-      <CardContent>
-        <thead>
-          <tr>
+      
+      <table class="table">
+      <thead>
+        <tr>
             {/* <th scope="row">{job._id + 1}</th> */}
-            <th>{job.companyName}</th>
-            <th>{job.position}</th>
-            <th>{job.source}</th>
-            <th>{job.appliedOn}</th>
-            <th>
+            <th scope="col">{job.companyName}</th>
+            <th scope="col">{job.position}</th>
+            <th scope="col">{job.source}</th>
+            <th scope="col">{job.appliedOn}</th>
+            <th scope="col">
               <div
                 role="checkbox"
                 aria-checked
@@ -101,7 +100,7 @@ import CardContent from '@mui/material/CardContent';
               </div>
              
             </th>
-            <th>{isRejected ? "rejected" : "Accepted for next step"}</th>{" "}
+            <th scope="col">{isRejected ? "rejected" : "Accepted for next step"}</th>{" "}
             <th>
               <button
                 className="btn btn-danger"
@@ -112,10 +111,10 @@ import CardContent from '@mui/material/CardContent';
               </button>
             </th>
           </tr>
-        </thead>
-      </table>
+          </thead>
+         </table> 
     </div>
-    </div>
+    
   );
 };
 

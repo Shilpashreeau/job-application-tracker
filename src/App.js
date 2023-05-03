@@ -22,7 +22,7 @@ function App() {
       {user ? (
         <>
           <NavBar user={user} setUser={setUser} />
-          <TableHeader user={user} setUser={setUser}/>
+          {/* <TableHeader user={user} setUser={setUser}/> */}
           <Routes>
             x
             <Route
@@ -32,6 +32,7 @@ function App() {
             />
             
           </Routes>
+          
         </>
       ) : (
         <>

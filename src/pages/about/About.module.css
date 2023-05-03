@@ -8,4 +8,10 @@ p {
 h2{
   color:#0e4291;
 }
+div.text-box {
+  width: 80%;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;
+}
 

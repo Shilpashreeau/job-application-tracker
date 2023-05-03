@@ -73,7 +73,7 @@ const AllJobsPage = ({ user, setUser }) => {
 
   return (
     <div>
-      <div>
+      <div className="addbutton">
         <button type="button" onClick={addNewBtn}>
           Add New Job
         </button>

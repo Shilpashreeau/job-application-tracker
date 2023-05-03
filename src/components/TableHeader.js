@@ -4,14 +4,14 @@ return(
 
     <>
     <table class="table">
-      <thead>
+      <thead class="thead-light">
         <tr className="table-dark">
-          <th >Company Name</th>
-          <th >Position</th>
-          <th >Job Source</th>
-          <th >Applied On</th>
-          <th >Status</th>
-          <th ></th>
+          <th scope="col">Company Name</th>
+          <th scope="col">Position</th>
+          <th scope="col">Job Source</th>
+          <th scope="col">Applied On</th>
+          <th scope="col">Status</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       </table>
