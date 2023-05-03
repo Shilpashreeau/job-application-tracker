@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
 import NewJob from "./NewJob";
+// import {useNavigate} from "react-router-dom";
 const AllJobsPage = ({ user, setUser }) => {
   const [jobs, setJobs] = useState([]);
   const [source, setSource] = useState("");
@@ -13,59 +13,9 @@ const AllJobsPage = ({ user, setUser }) => {
 
   /*Whenever we are adding new data we'll make a true,when we'll close the data we'll make false above one e.g */
   const [newJob, setNewJob] = useState("");
+  // let navigate = useNavigate();
 
-  //   return (
-  //     <>
-  //     <div>
-  //       <NewJob  user={user} setUser={setUser} />
-  //       <ul>
-  //         {jobs.map((job, index) => (
-  //           <li key={index}>{job}</li>
-  //         ))}
-  //       </ul>
-  //     </div>
-
-  //     <table class="table">
-  //                         <thead>
-  //                             <tr className="table-dark">
-  //                                 <th scope="col">Company Name</th>
-  //                                 <th scope="col">Position</th>
-  //                                 <th scope="col">Job Source</th>
-  //                                 <th scope="col">Applied On</th>
-  //                                 <th scope="col">Status</th>
-  //                                 <th scope="col"></th>
-  //                             </tr>
-  //                         </thead>
-  //                         {/* <tbody>
-
-  //                             {
-  //                                 getuserdata.map((element, id) => {
-  //                                     return (
-  //                                         <>
-  //                                             <tr>
-  //                                                 <th scope="row">{id + 1}</th>
-  //                                                 <td>{element.company}</td>
-  //                                                 <td>{element.position}</td>
-  //                                                 <td>{element.source}</td>
-  //                                                 <td>{element.date}</td>
-  //                                                 <td>{element.status}</td>
-
-  //                                                 <td className="d-flex justify-content-between">
-  //                                                     <NavLink to={`view/${element._id}`}> <button className="btn btn-success"><RemoveRedEyeIcon /></button></NavLink>
-  //                                                     <NavLink to={`edit/${element._id}`}>  <button className="btn btn-primary"><CreateIcon /></button></NavLink>
-  //                                                     <button className="btn btn-danger" onClick={() => deleteuser(element._id)}><DeleteOutlineIcon /></button>
-  //                                                 </td>
-  //                                             </tr>
-  //                                         </>
-  //                                     )
-  //                                 })
-  //                             }
-  //                         </tbody> */}
-  //                     </table>
-
-  //                     </>
-  //   );
-  // }
+  //* for getting all the jobs
   const getJobs = async () => {
     try {
       const jobs = await axios.get("/api/jobs");
@@ -82,8 +32,8 @@ const AllJobsPage = ({ user, setUser }) => {
     getJobs();
   }, []);
 
-  /*Proccess of adding New task while clicking */
-  // path: 1)addNewTask create function => 2)create UI Part Below The Add new Button and call this addNewTask on submit curly brases =>3) whenever we click add New btn it will show the form so for that : we need to call event Listners on one addNewbtn and call here belew to make this true use !isAddingNew true for flip =>4)come back to our addNewTask function and work on :: check more than 0 or not if it's show msg if it's not go further and call backend
+  /*Proccess of adding New job while clicking */
+  // path: 1)addNewJob create function => 2)create UI Part Below The Add new Button and call this addNewJob on submit  =>3) whenever we click add New btn it will show the form so for that : we need to call event Listners on one addNewbtn and call here below to make this true use !isAddingNew true for flip =>4)come back to our addNewJob function and work on :: check more than 0 or not if it's show msg if it's not go further and call backend
 
   const addNewBtn = () => {
     /*To show the form we need to setisAddingNew true only */
@@ -91,6 +41,7 @@ const AllJobsPage = ({ user, setUser }) => {
     setisAddingNew(!isAddingNew);
   };
 
+  //* to add new job
   const addNewJob = async (e) => {
     e.preventDefault();
     if (newJob.length <= 0) {
@@ -98,7 +49,7 @@ const AllJobsPage = ({ user, setUser }) => {
       return;
     }
     try {
-      const  job  = await axios.post("/api/jobs", {
+      const job = await axios.post("/api/jobs", {
         companyName: newJob,
         source: source,
         appliedOn: date,
@@ -106,55 +57,47 @@ const AllJobsPage = ({ user, setUser }) => {
       });
       console.log(job.data);
       toast.success("New job Created");
-      setisAddingNew(false); //which 'll habitually close this form
+      setisAddingNew(false); //which will close this form
       setNewJob(""); //setNewJob will be empty which is initially value;
 
-      // after successfully created job i will add this into setNewJob for updating ...jobs(it spread all the jobs which is already there) befoure this I should add my newJob list in form of obje {...data}
-      setJobs([{ ...job.data}, ...jobs]);
+      // after successfully created job i will add this into setNewJob for updating ...jobs(it spread all the jobs which is already there) befoure this I should add my newJob list in form of object {...data}
+      setJobs([{ ...job.data }, ...jobs]);
+// navigate("/jobs");
       console.log(jobs);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const deleteJob = async (id) => {
-    try {
-      await axios.delete(`/api/jobs/${id}`);
-      toast.success("Job successfully deleted");
-      /*after successfully deleted job we need remove from our jobs into our states so for that we need filter which says accept delete all thing properly run go @w3school and explore filter */
-      setJobs(jobs.filter((job) => job._id !== id));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  
 
   return (
     <div>
       <div>
         <button type="button" onClick={addNewBtn}>
-          Add New
+          Add New Job
         </button>
       </div>
       {/*
-      1)1st Querry if the valuse isAddingNew is true I'll actually show the form. 
-      2)2nd Querry Whenever we will change the input value It will also change the value of newTask value */}
+      1)1st Query if the value isAddingNew is true I'll actually show the form. 
+      2)2nd Query Whenever we will change the input value It will also change the value of newJob value */}
       {isAddingNew && (
         <form onSubmit={addNewJob}>
           <input
             type="text"
-            value={newJob}
+            // value={newJob}
             onChange={(e) => setNewJob(e.target.value)}
             placeholder="Company name Required"
           />
           <input
             type="text"
-            value={position}
+            // value={position}
             onChange={(e) => setPosition(e.target.value)}
             placeholder="Position applied for"
           />
           <input
             type="text"
-            value={source}
+            // value={source}
             onChange={(e) => setSource(e.target.value)}
             placeholder="Source where job is applied"
           />
@@ -168,13 +111,14 @@ const AllJobsPage = ({ user, setUser }) => {
       )}
 
       {jobs?.length > 0 ? (
-        <table>
-          <tbody>
-            {jobs?.map((job) => (
-              <NewJob key={job._id} job={job} deleteJob={deleteJob} />
-            ))}
-          </tbody>
-        </table>
+        
+        <>
+          {jobs?.map((job) => (
+            
+            // <NewJob key={job._id} job={job} deleteJob={deleteJob} />
+            <NewJob key={job._id} job={job} />
+          ))}
+        </>
       ) : (
         "No jobs found, Create job"
       )}

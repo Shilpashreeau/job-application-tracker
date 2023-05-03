@@ -11,6 +11,8 @@ import AboutPage from "./pages/about/AboutPage";
 import { getUser } from "./utilities/users-service";
 
 import "./App.css";
+import TableHeader from "./components/TableHeader";
+
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -20,14 +22,15 @@ function App() {
       {user ? (
         <>
           <NavBar user={user} setUser={setUser} />
+          <TableHeader user={user} setUser={setUser}/>
           <Routes>
             x
-            {/* <Route path='/jobs/new' element={ <NewJobPage user={user} setUser={setUser}/> }/> */}
             <Route
               path="/jobs"
               element={<AllJobsPage user={user} setUser={setUser} />}
+              
             />
-            {/* <Route path="/*" element={<Navigate to="/jobs/new" />} /> */}
+            
           </Routes>
         </>
       ) : (

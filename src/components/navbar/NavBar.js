@@ -11,7 +11,7 @@ function NavBar({ user, setUser }) {
      JOB APPLICATION TRACKER
       <Link style={{ textDecoration: 'none',color:'black' }} to="/jobs">List of Jobs</Link>
       {/* &nbsp; | &nbsp; */}
-      {/* <Link to="/jobs/new">New Job</Link> <span>Welcome, {user.name}</span>{" "} */}
+      {/* <Link to="/jobs/new">New Job</Link> */}<span>Welcome, {user.name}</span>{" "} 
       <Link style={{ textDecoration: 'none',color:'black'}}to="" onClick={handleLogOut}>
         Logout
       </Link>

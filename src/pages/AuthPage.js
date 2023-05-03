@@ -1,5 +1,5 @@
 import { useState } from "react";
- import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SignUpForm from "../components/SignUpForm";
 import LoginForm from "../components/login/LogInForm";
 import AboutPage from "./about/AboutPage";
@@ -9,10 +9,6 @@ function AuthPage({ setUser }) {
 
   return (
     <main className="AuthPage">
-      {/* <Link to="/" onClick={<AboutPage/>}>
-        About
-      </Link> */}
-
       <button onClick={() => setShowLogin(!showLogin)}>
         {showLogin ? "Sign up" : "Sign in"}
       </button>
