@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 
 import axios from "axios";
 import NewJob from "./NewJob";
+import { deleteJob} from "../utilities/all-jobs-api";
 // import {useNavigate} from "react-router-dom";
 const AllJobsPage = ({ user, setUser }) => {
   const [jobs, setJobs] = useState([]);
@@ -69,7 +70,12 @@ const AllJobsPage = ({ user, setUser }) => {
     }
   };
 
-  
+  async function deleteFunc(id){
+    const response = await deleteJob(id)
+    console.log(response);
+    setJobs(jobs.filter((job) => job._id !== id));
+    // window.location.reload();
+  }
 
   return (
     <div>
@@ -115,8 +121,8 @@ const AllJobsPage = ({ user, setUser }) => {
         <>
           {jobs?.map((job) => (
             
-            // <NewJob key={job._id} job={job} deleteJob={deleteJob} />
-            <NewJob key={job._id} job={job} />
+            <NewJob key={job._id} job={job} deleteFunc={deleteFunc} />
+            // <NewJob key={job._id} job={job} />
           ))}
         </>
       ) : (

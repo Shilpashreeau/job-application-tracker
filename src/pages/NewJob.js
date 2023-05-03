@@ -7,10 +7,11 @@ import { deleteJob} from "../utilities/all-jobs-api";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 // import { deleteJob } from "../../controllers/api/job";
 
-// const NewJob = ({ job, deleteJob }) => {
-const NewJob = ({ job }) => {
+const NewJob = ({ job, deleteFunc }) => {
+// const NewJob = ({ job }) => {
   const [isRejected, setIsRejected] = useState(job.status);
   const [isLoading, setIsLoading] = useState(false);
+  const [jobs, setJobs] = useState([]);
   // const { id } = useParams();
 
   console.log(job);
@@ -50,11 +51,7 @@ const NewJob = ({ job }) => {
   //     console.log(error);
   //   }
   // };
-  async function deleteFunc(id){
-    const response = await deleteJob(id)
-    console.log(response);
-    // window.location.reload();
-  }
+  
   
   // const handleDelete = async (id) => {
   //   await deleteJob(id);
