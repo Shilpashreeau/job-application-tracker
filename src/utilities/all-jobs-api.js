@@ -11,3 +11,6 @@ export function getById(id) {
 }
 export function deleteJob(id){
   return sendRequest(`${BASE_URL}/${id}`, 'DELETE')}
+
+  export function updateJob(id){
+    return sendRequest(`${BASE_URL}/${id}`, 'PUT')}

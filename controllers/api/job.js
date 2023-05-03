@@ -42,21 +42,21 @@ const getCurrentJob = async (req, res, next) => {
 //* to update job (based on check box status)
 const updateJob = async (req, res, next) => {
   try {
-    const job = await Job.findById(req.params.id).exec();
-    console.log(job);
-    if (!job)
-      return next(createError({ status: 404, message: "job Not found" }));
-    if (job._id.toString() !== req.job.id)
-      return next(createError({ status: 401, message: "It's not your job" }));
+    // const job = await Job.findByIdAndUpdate(req.params.id).exec();
+    // console.log(job);
+    // if (!job)
+    //   return next(createError({ status: 404, message: "job Not found" }));
+    // if (job._id.toString() !== req.job.id)
+    //   return next(createError({ status: 401, message: "It's not your job" }));
     /* task.user.toString() is coming from job which is already in string formate i.e toString() user & req.user.id is come from payload */
-    const updateIt = await Job.findByIdAndUpdate(
-      req.params.id,
+    await Job.findByIdAndUpdate(
+      req.params.jobId,
       {
         status: req.body.status,
       },
       { new: true }
     );
-    return res.status(200).json(updateIt);
+    return res.status(200);
   } catch (error) {
     return next(error);
   }
