@@ -2,15 +2,12 @@ import axios from "axios";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 
-
 // import { useParams } from "react-router-dom";
 
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-
-
 // const NewJob = ({ job, deleteJob }) => {
-  const NewJob = ({ job}) => {
+const NewJob = ({ job }) => {
   const [isRejected, setIsRejected] = useState(job.status);
   const [isLoading, setIsLoading] = useState(false);
   // const { id } = useParams();
@@ -34,7 +31,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
   };
 
   //* for delete
-  // const deleteJob = async (_id) => { 
+  // const deleteJob = async (_id) => {
   //   try {
   //     return await axios.delete(`/api/jobs/${job._id}`);
   //   } catch (error) {
@@ -56,11 +53,8 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
   //   await deleteJob(id);
   // };
 
-  
-
   return (
     <div className="newjob">
-      
       {/* <table class="table">
       <thead>
         <tr className="table-dark">
@@ -72,12 +66,12 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
           <th ></th>
         </tr>
       </thead> */}
-     
+
       {/* <TableHeader /> */}
-      
+
       <table class="table">
-      <thead>
-        <tr>
+        <thead>
+          <tr>
             {/* <th scope="row">{job._id + 1}</th> */}
             <th scope="col">{job.companyName}</th>
             <th scope="col">{job.position}</th>
@@ -98,9 +92,10 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
                   disabled={isLoading}
                 />
               </div>
-             
             </th>
-            <th scope="col">{isRejected ? "rejected" : "Accepted for next step"}</th>{" "}
+            <th scope="col">
+              {isRejected ? "rejected" : "Accepted for next step"}
+            </th>{" "}
             <th>
               <button
                 className="btn btn-danger"
@@ -111,10 +106,9 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
               </button>
             </th>
           </tr>
-          </thead>
-         </table> 
+        </thead>
+      </table>
     </div>
-    
   );
 };
 
