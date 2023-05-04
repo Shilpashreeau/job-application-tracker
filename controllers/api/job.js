@@ -42,6 +42,7 @@ const getCurrentJob = async (req, res, next) => {
 //* to update job (based on check box status)
 const updateJob = async (req, res, next) => {
   console.log(req.params.jobId);
+  console.log("inside updatejob");
   try {
     // const job = await Job.findByIdAndUpdate(req.params.id).exec();
     // console.log(job);
@@ -53,7 +54,7 @@ const updateJob = async (req, res, next) => {
     const updatedJob = await Job.findByIdAndUpdate(
       req.params.jobId,
       {
-        status: false,
+        jobStatus: false,
       },
       { new: true }
     );

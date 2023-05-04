@@ -1,15 +1,16 @@
 // import axios from "axios";
 import React, { useState } from "react";
+import {useNavigate} from "react-router-dom";
 import { updateJob } from "../utilities/all-jobs-api";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-const NewJob = ({ job, deleteFunc }) => {
-  const [isRejected, setIsRejected] = useState(job.status);
+const NewJob = ({ job, deleteFunc,updateFunc}) => {
+  const [isRejected, setIsRejected] = useState(job.jobStatus);
   const [isLoading, setIsLoading] = useState(false);
   const [checkbox,setCheckbox]=useState(true);
 const [updatedData,setUpdatedData]=useState([]);
   console.log(job);
-
+const navigate=useNavigate();
   //* For update
   // const handleCheckboxClick = () => {
   // try {
@@ -28,14 +29,12 @@ const [updatedData,setUpdatedData]=useState([]);
     setIsRejected(e.target.value);
     // setCheckbox(true);
     console.log(checkbox);
+    updateFunc(job._id);
+    navigate(0);
     // setUpdatedData([...])
   };
 
-  async function updateFunc(id) {
-    const response = await updateJob(id);
-    console.log(response);
-    // setJobs(jobs);
-  }
+  
   return (
     <div className="newjob">
       <table className="table">
@@ -55,7 +54,7 @@ const [updatedData,setUpdatedData]=useState([]);
                 <input
                   onClick={() => updateFunc(job._id)}
                   type="checkbox"
-                  checked={isRejected}
+                  checked={job.jobStatus}
                   readOnly
                   tabIndex={-1}
                   // disabled={isLoading}
@@ -63,7 +62,8 @@ const [updatedData,setUpdatedData]=useState([]);
               </div>
             </th>
             <th scope="col">
-              {isRejected || !checkbox ? "Rejected" : "Accepted for next step"}
+              {/* {isRejected || !checkbox ? "Rejected" : "Accepted for next step"} */}
+              {job.jobStatus ? "Accepted for next step":"Rejected" }
             </th>
             <th>
               <button

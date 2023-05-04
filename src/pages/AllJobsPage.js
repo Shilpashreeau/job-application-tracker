@@ -128,7 +128,7 @@ const AllJobsPage = ({ user, setUser }) => {
       {jobs?.length > 0 ? (
         <>
           {jobs?.map((job) => (
-            <NewJob key={job._id} job={job} deleteFunc={deleteFunc} />
+            <NewJob key={job._id} job={job} deleteFunc={deleteFunc} updateFunc={updateFunc}  />
           ))}
         </>
       ) : (
