@@ -20,7 +20,7 @@ Link to Trello Board =>[Trello](https://trello.com/b/HpDzslKw/mern-stack-app)
 
 
 
-### APP => [CRUD APP](https://shilpauday-portfolio.netlify.app/)
+### APP => [CRUD APP](https://jobs-tracker-mern-app.herokuapp.com/)
 
 #
 ## **Built With**
@@ -48,6 +48,7 @@ Link to Trello Board =>[Trello](https://trello.com/b/HpDzslKw/mern-stack-app)
 ![Wireframe1](./images/APP%20Wireframe.png "components of the app")
 ![Login](./images/Wireframe-landing.png "components of the app")
 ![Dashboard](./images/Wireframe-dashboard.png "components of the app")
+![LandingPage](./images/landingpage.png "landing page") ![SignUp](./images/signup.png "sign up") ![dashboard](./images/dashboard.png "Dashboard") ![newjob](./images/newjobform.png)
 
 
 # Getting Started with Create React App

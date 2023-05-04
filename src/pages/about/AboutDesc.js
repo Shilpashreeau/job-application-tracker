@@ -8,7 +8,7 @@ function AboutDesc() {
         <br />
         Don't worry, this Job Tracking Application will help you store job
         related information and can be easily access able wherever you go.
-        <br />
+        
         All you need is just create an account and start filling the job
         information!
       </p>

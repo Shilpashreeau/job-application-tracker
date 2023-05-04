@@ -10,6 +10,7 @@ const AllJobsPage = ({ user, setUser }) => {
   const [source, setSource] = useState("");
   const [date, setDate] = useState("");
   const [position, setPosition] = useState("");
+  const [status,setStatus]=useState(false);
   const [isAddingNew, setisAddingNew] = useState(false);
 
   /*Whenever we are adding new data we'll make a true,when we'll close the data we'll make false above one e.g */
@@ -54,6 +55,7 @@ const AllJobsPage = ({ user, setUser }) => {
         source: source,
         appliedOn: date,
         position: position,
+        status:status
       });
       console.log(job.data);
       toast.success("New job Created");
@@ -62,6 +64,7 @@ const AllJobsPage = ({ user, setUser }) => {
 
       // after successfully created job i will add this into setNewJob for updating ...jobs(it spread all the jobs which is already there) befoure this I should add my newJob list in form of object {...data}
       setJobs([{ ...job.data }, ...jobs]);
+      
       // navigate("/jobs");
       console.log(jobs);
     } catch (error) {
@@ -117,6 +120,7 @@ const AllJobsPage = ({ user, setUser }) => {
             onChange={(e) => setDate(e.target.value)}
             name="Applied on"
           />
+          
           <button type="submit">Add</button>
         </form>
       )}

@@ -1,7 +1,11 @@
-.App {
-  text-align: center;
+body{
   background-image: url(resume.jpg);
   background-size: cover;
+}
+
+.App {
+  text-align: center;
+
   background-position: center;
   background-repeat: no-repeat;
 }

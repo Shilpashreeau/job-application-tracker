@@ -6,7 +6,8 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 const NewJob = ({ job, deleteFunc }) => {
   const [isRejected, setIsRejected] = useState(job.status);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [checkbox,setCheckbox]=useState(true);
+const [updatedData,setUpdatedData]=useState([]);
   console.log(job);
 
   //* For update
@@ -25,6 +26,9 @@ const NewJob = ({ job, deleteFunc }) => {
 
   const handleCheckboxClick = (e) => {
     setIsRejected(e.target.value);
+    // setCheckbox(true);
+    console.log(checkbox);
+    // setUpdatedData([...])
   };
 
   async function updateFunc(id) {
@@ -54,12 +58,12 @@ const NewJob = ({ job, deleteFunc }) => {
                   checked={isRejected}
                   readOnly
                   tabIndex={-1}
-                  disabled={isLoading}
+                  // disabled={isLoading}
                 />
               </div>
             </th>
             <th scope="col">
-              {isRejected ? "rejected" : "Accepted for next step"}
+              {isRejected || !checkbox ? "Rejected" : "Accepted for next step"}
             </th>
             <th>
               <button
