@@ -1,32 +1,43 @@
 // import axios from "axios";
 import React, { useState } from "react";
-
+import { updateJob} from "../utilities/all-jobs-api";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-const NewJob = ({ job, deleteFunc, updateFunc }) => {
+const NewJob = ({ job, deleteFunc}) => {
   const [isRejected, setIsRejected] = useState(job.status);
   const [isLoading, setIsLoading] = useState(false);
 
   console.log(job);
 
   //* For update
-  const handleCheckboxClick = () => {
+  // const handleCheckboxClick = () => {
     // try {
-    setIsLoading(true);
+    // setIsLoading(true);
     //   await axios.put(`/api/jobs/${job._id}`, {
     // status: !isRejected,
     //   });
-    setIsRejected(!isRejected);
+    // setIsRejected(!isRejected);
     //   toast.success("Job Updated Successfully");
     // } catch (error) {
     //   console.log(error);
     // } finally {
     // setIsLoading(false);
-  };
+  
+  const handleCheckboxClick=(e)=>{
+    setIsRejected(e.target.value);
+  }
 
+ 
+  
+  
+  async function updateFunc(id){
+    const response = await updateJob(id)
+    console.log(response);
+    // setJobs(jobs);
+  }
   return (
     <div className="newjob">
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">{job.companyName}</th>
@@ -41,7 +52,7 @@ const NewJob = ({ job, deleteFunc, updateFunc }) => {
                 disabled={isLoading}
               >
                 <input
-                onClick={()=>updateFunc(job._id)}
+                  onClick={() => updateFunc(job._id)}
                   type="checkbox"
                   checked={isRejected}
                   readOnly
@@ -52,7 +63,7 @@ const NewJob = ({ job, deleteFunc, updateFunc }) => {
             </th>
             <th scope="col">
               {isRejected ? "rejected" : "Accepted for next step"}
-            </th>{" "}
+            </th>
             <th>
               <button
                 onClick={() => {

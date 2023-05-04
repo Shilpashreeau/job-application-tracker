@@ -79,7 +79,7 @@ const AllJobsPage = ({ user, setUser }) => {
   async function updateFunc(id){
     const response = await updateJob(id)
     console.log(response);
-    // setJobs(jobs.filter((job) => job._id !== id));
+    setJobs(jobs);
     // window.location.reload();
   }
 
@@ -127,7 +127,7 @@ const AllJobsPage = ({ user, setUser }) => {
         <>
           {jobs?.map((job) => (
             
-            <NewJob key={job._id} job={job} deleteFunc={deleteFunc} updateFunc={updateFunc}/>
+            <NewJob key={job._id} job={job} deleteFunc={deleteFunc} />
             // <NewJob key={job._id} job={job} />
           ))}
         </>
