@@ -1,9 +1,9 @@
 // import axios from "axios";
 import React, { useState } from "react";
-import { updateJob} from "../utilities/all-jobs-api";
+import { updateJob } from "../utilities/all-jobs-api";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-const NewJob = ({ job, deleteFunc}) => {
+const NewJob = ({ job, deleteFunc }) => {
   const [isRejected, setIsRejected] = useState(job.status);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -11,27 +11,24 @@ const NewJob = ({ job, deleteFunc}) => {
 
   //* For update
   // const handleCheckboxClick = () => {
-    // try {
-    // setIsLoading(true);
-    //   await axios.put(`/api/jobs/${job._id}`, {
-    // status: !isRejected,
-    //   });
-    // setIsRejected(!isRejected);
-    //   toast.success("Job Updated Successfully");
-    // } catch (error) {
-    //   console.log(error);
-    // } finally {
-    // setIsLoading(false);
-  
-  const handleCheckboxClick=(e)=>{
-    setIsRejected(e.target.value);
-  }
+  // try {
+  // setIsLoading(true);
+  //   await axios.put(`/api/jobs/${job._id}`, {
+  // status: !isRejected,
+  //   });
+  // setIsRejected(!isRejected);
+  //   toast.success("Job Updated Successfully");
+  // } catch (error) {
+  //   console.log(error);
+  // } finally {
+  // setIsLoading(false);
 
- 
-  
-  
-  async function updateFunc(id){
-    const response = await updateJob(id)
+  const handleCheckboxClick = (e) => {
+    setIsRejected(e.target.value);
+  };
+
+  async function updateFunc(id) {
+    const response = await updateJob(id);
     console.log(response);
     // setJobs(jobs);
   }

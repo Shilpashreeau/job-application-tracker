@@ -1,10 +1,8 @@
-
-
 .App {
   text-align: center;
-  /* background-image: url(resume.jpg); */
-  background-size:cover;
-  background-position:center;
+  background-image: url(resume.jpg);
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 }
 
@@ -42,26 +40,13 @@
     transform: rotate(360deg);
   }
 }
-/* .newjob{
-  background:linear-gradient(rgb(116, 116, 214),rgb(94, 159, 94));
-} */
-/* .table{
-
-  border-collapse: collapse; /* merge the borders of the cells 
-  border-spacing: 0;
-
+.newjob {
+  background: linear-gradient(rgb(116, 116, 214), rgb(94, 159, 94));
 }
-.table th{
 
-  
-    padding: 10px; /* add some padding to the cells for spacing 
-    border: 1px solid black; /* add a border for clarity 
-  
-} */
 div.text-box {
   width: 70%;
   padding: 10px;
   border: 5px solid gray;
   margin: 0px;
-  
 }

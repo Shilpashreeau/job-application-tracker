@@ -3,8 +3,8 @@ import toast from "react-hot-toast";
 
 import axios from "axios";
 import NewJob from "./NewJob";
-import { deleteJob,updateJob} from "../utilities/all-jobs-api";
-// import {useNavigate} from "react-router-dom";
+import { deleteJob, updateJob } from "../utilities/all-jobs-api";
+
 const AllJobsPage = ({ user, setUser }) => {
   const [jobs, setJobs] = useState([]);
   const [source, setSource] = useState("");
@@ -14,7 +14,6 @@ const AllJobsPage = ({ user, setUser }) => {
 
   /*Whenever we are adding new data we'll make a true,when we'll close the data we'll make false above one e.g */
   const [newJob, setNewJob] = useState("");
-  // let navigate = useNavigate();
 
   //* for getting all the jobs
   const getJobs = async () => {
@@ -63,24 +62,24 @@ const AllJobsPage = ({ user, setUser }) => {
 
       // after successfully created job i will add this into setNewJob for updating ...jobs(it spread all the jobs which is already there) befoure this I should add my newJob list in form of object {...data}
       setJobs([{ ...job.data }, ...jobs]);
-// navigate("/jobs");
+      // navigate("/jobs");
       console.log(jobs);
     } catch (error) {
       console.log(error);
     }
   };
-
-  async function deleteFunc(id){
-    const response = await deleteJob(id)
+  //* to delete a job
+  async function deleteFunc(id) {
+    const response = await deleteJob(id);
     console.log(response);
     setJobs(jobs.filter((job) => job._id !== id));
     // window.location.reload();
   }
-  async function updateFunc(id){
-    const response = await updateJob(id)
+  //* to update a job
+  async function updateFunc(id) {
+    const response = await updateJob(id);
     console.log(response);
     setJobs(jobs);
-    // window.location.reload();
   }
 
   return (
@@ -123,12 +122,9 @@ const AllJobsPage = ({ user, setUser }) => {
       )}
 
       {jobs?.length > 0 ? (
-        
         <>
           {jobs?.map((job) => (
-            
             <NewJob key={job._id} job={job} deleteFunc={deleteFunc} />
-            // <NewJob key={job._id} job={job} />
           ))}
         </>
       ) : (

@@ -41,7 +41,7 @@ const getCurrentJob = async (req, res, next) => {
 };
 //* to update job (based on check box status)
 const updateJob = async (req, res, next) => {
-  console.log(req.params.jobId)
+  console.log(req.params.jobId);
   try {
     // const job = await Job.findByIdAndUpdate(req.params.id).exec();
     // console.log(job);
@@ -50,7 +50,7 @@ const updateJob = async (req, res, next) => {
     // if (job._id.toString() !== req.job.id)
     //   return next(createError({ status: 401, message: "It's not your job" }));
     /* task.user.toString() is coming from job which is already in string formate i.e toString() user & req.user.id is come from payload */
-    const updatedJob=await Job.findByIdAndUpdate(
+    const updatedJob = await Job.findByIdAndUpdate(
       req.params.jobId,
       {
         status: false,
@@ -65,45 +65,16 @@ const updateJob = async (req, res, next) => {
 };
 
 //* to delete job
- const deleteJob = async(req,res,next)=>{
+const deleteJob = async (req, res, next) => {
   try {
-    // const job = await Job.findById(req.params.id).exec();
-    // console.log(job);
-    // console.log(req.params.id);
-    // if(!job) return next(createError({status:404, message:"user not found"}));
-    // if(job.companyName.toString() !== req.user.id) return next(createError({
-    //   status:401, message: "It's not your job"
-    // }));
     console.log(req.params.jobId);
     await Job.findByIdAndDelete(req.params.jobId);
-    return res.status(200).json("Job deleted successfully") 
-  }catch (error) {
-    console.log(error)
-   return  next(error)
+    return res.status(200).json("Job deleted successfully");
+  } catch (error) {
+    console.log(error);
+    return next(error);
   }
-
-}
-
-/*const deleteJob=async(req,res)=>{
-try{
-
-
-await Job.deleteOne(req.params.id)
-console.log(deleteJob);
-
-res.status(404).json({ message: 'Job not found' });
-// }
-// res.json(deleteJob);
-}catch(error){
-console.error(error);
-res.status(500).json({ message: 'Server error' });
-}
-
-
-}*/
-
-
-
+};
 
 module.exports = {
   createJob,

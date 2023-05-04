@@ -12,8 +12,6 @@ import { getUser } from "./utilities/users-service";
 
 import "./App.css";
 
-
-
 function App() {
   const [user, setUser] = useState(getUser());
 
@@ -28,11 +26,8 @@ function App() {
             <Route
               path="/jobs"
               element={<AllJobsPage user={user} setUser={setUser} />}
-              
             />
-            
           </Routes>
-          
         </>
       ) : (
         <>

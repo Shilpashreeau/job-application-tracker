@@ -9,7 +9,7 @@ router.get("/", jobsCtrl.getAllJobsUCreated);
 
 router.get("/:jobId", jobsCtrl.getCurrentJob);
 //req.params.id
-// This one for upadating job
+// This one for updating job
 router.put("/:jobId", jobsCtrl.updateJob);
 
 router.delete("/:jobId", jobsCtrl.deleteJob);
